@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Robine & Anila - Save the Date</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -21,9 +21,7 @@
         center center / cover no-repeat;
       font-family: var(--font-main);
       color: var(--text);
-      line-height: 1.6;
       text-align: center;
-      position: relative;
       overflow-x: hidden;
     }
 
@@ -32,7 +30,7 @@
     }
 
     .main-title {
-      font-size: 7em;
+      font-size: 5em;
       font-family: var(--font-cursive);
       color: var(--accent);
       opacity: 0;
@@ -40,7 +38,7 @@
     }
 
     .names {
-      font-size: 5em;
+      font-size: 3em;
       font-family: var(--font-cursive);
       color: var(--accent);
       margin-bottom: 10px;
@@ -49,7 +47,7 @@
     }
 
     .sub-tagline {
-      font-size: 2.8em;
+      font-size: 1.8em;
       margin: 20px 0 40px;
       font-family: var(--font-cursive);
       opacity: 0;
@@ -72,7 +70,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2em;
+      font-size: 2.5em;
       font-weight: bold;
       color: white;
       border-radius: 20px;
@@ -88,15 +86,25 @@
     }
 
     .day { background-image: url('https://images.pexels.com/photos/289519/pexels-photo-289519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); }
-    .month { background-image: url('https://images.pexels.com/photos/265856/pexels-photo-265856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); }
+    .month {
+      background-image: url('https://images.pexels.com/photos/265856/pexels-photo-265856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+      color: black;
+      text-shadow: 1px 1px 3px #fff;
+    }
     .year { background-image: url('https://images.pexels.com/photos/1038711/pexels-photo-1038711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); }
 
     .countdown {
-      font-size: 1.3em;
+      font-size: 1.5em;
       font-weight: 600;
       margin-top: 20px;
       opacity: 0;
       animation: fadeInUp 1.5s ease 2s forwards;
+    }
+
+    .countdown span {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.6em;
     }
 
     section {
@@ -110,6 +118,22 @@
       text-decoration: none;
     }
 
+    .invitation {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 30px;
+      border-radius: 12px;
+      margin: 30px auto;
+      max-width: 700px;
+      font-family: var(--font-main);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .invitation h2 {
+      font-family: var(--font-cursive);
+      color: var(--accent);
+      font-size: 2.5em;
+    }
+
     footer {
       padding: 40px 20px;
       background-color: rgba(255, 250, 245, 0.8);
@@ -121,13 +145,13 @@
       position: absolute;
       width: 15px;
       height: 15px;
-      background: radial-gradient(circle, white 50%, transparent 70%);
       border-radius: 50%;
       animation: fall linear infinite;
       opacity: 0.8;
     }
 
     #music-button {
+      display: none;
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -170,28 +194,11 @@
   </style>
 </head>
 <body>
-  <audio id="bg-music" loop>
-    <source src="https://cdn.jsdelivr.net/gh/Robine13/RobineandAnila/Song.mp3" />
+  <audio id="bg-music" autoplay loop>
+    <source src="https://cdn.jsdelivr.net/gh/Robine13/RobineandAnila/Song.mp3" type="audio/mp3" />
   </audio>
 
   <button id="music-button">Play Music 🎵</button>
-
-  <script>
-    document.getElementById("music-button").addEventListener("click", function () {
-      const audio = document.getElementById("bg-music");
-      audio.play();
-      this.style.display = "none";
-    });
-
-    for (let i = 0; i < 30; i++) {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
-      petal.style.animationDelay = Math.random() * 5 + 's';
-      document.body.appendChild(petal);
-    }
-  </script>
 
   <header>
     <div class="main-title">Save the Date</div>
@@ -202,8 +209,20 @@
       <div class="date-box month">August</div>
       <div class="date-box year">2025</div>
     </div>
-    <div class="countdown" id="countdown">Loading countdown...</div>
+    <div class="countdown" id="countdown">
+      <span id="count-days">--</span> days,
+      <span id="count-hours">--</span> hours,
+      <span id="count-minutes">--</span> minutes to go!
+    </div>
   </header>
+
+  <section class="invitation">
+    <h2>You're Invited!</h2>
+    <p>We joyfully invite you to join us for the celebration of our love.</p>
+    <p><strong>Date:</strong> August 21, 2025<br>
+       <strong>Time:</strong> 10:30 AM<br>
+       <strong>Location:</strong> St. Kuriakose Knanaya Church, Kakkanad</p>
+  </section>
 
   <section class="venue">
     <h2>Venue</h2>
@@ -237,11 +256,33 @@
       const hours = Math.floor((gap % day) / hour);
       const minutes = Math.floor((gap % hour) / minute);
 
-      document.getElementById('countdown').innerText =
-        `${days} days, ${hours} hours, and ${minutes} minutes to go!`;
+      document.getElementById('count-days').textContent = days;
+      document.getElementById('count-hours').textContent = hours;
+      document.getElementById('count-minutes').textContent = minutes;
     };
 
     setInterval(countdown, 1000);
+
+    const audio = document.getElementById("bg-music");
+    audio.play().catch(() => {
+      document.getElementById("music-button").style.display = "block";
+    });
+
+    document.getElementById("music-button").addEventListener("click", function () {
+      audio.play();
+      this.style.display = "none";
+    });
+
+    const colors = ['#ffffff', '#ffd1dc', '#ffe4e1', '#f0f8ff'];
+    for (let i = 0; i < 30; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]} 40%, transparent 70%)`;
+      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
+      petal.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(petal);
+    }
   </script>
 </body>
 </html>
