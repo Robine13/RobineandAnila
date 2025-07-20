@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robine & Anila - Save the Date</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #d4af37;
+      --text: #333;
+      --font-main: 'Open Sans', sans-serif;
+      --font-cursive: 'Great Vibes', cursive;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(255, 250, 245, 0.7), rgba(255, 250, 245, 0.7)),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80')
+        center center / cover no-repeat;
+      font-family: var(--font-main);
+      color: var(--text);
+      line-height: 1.6;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 60px 20px 20px;
+    }
+
+    .main-title {
+      font-size: 5em;
+      font-family: var(--font-cursive);
+      color: var(--accent);
+      opacity: 0;
+      animation: fadeInDown 1.5s ease forwards;
+    }
+
+    .names {
+      font-size: 3em;
+      font-family: var(--font-cursive);
+      color: var(--accent);
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeIn 2s ease 0.5s forwards;
+    }
+
+    .sub-tagline {
+      font-size: 1.8em;
+      margin: 20px 0 40px;
+      font-family: var(--font-cursive);
+      opacity: 0;
+      animation: fadeIn 2s ease 1s forwards;
+    }
+
+    .date-boxes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      opacity: 0;
+      animation: zoomIn 1.5s ease 1.5s forwards;
+    }
+
+    .date-box {
+      flex: 1 1 250px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+      border-radius: 20px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      font-family: var(--font-cursive);
+      transition: transform 0.3s ease;
+    }
+
+    .date-box:hover {
+      transform: scale(1.05);
+    }
+
+    .day { background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80'); }
+    .month { background-image: url('https://images.unsplash.com/photo-1504203700686-f21ce7ab7c89?auto=format&fit=crop&w=800&q=80'); }
+    .year { background-image: url('https://images.unsplash.com/photo-1521488671643-635f4e4b9acb?auto=format&fit=crop&w=800&q=80'); }
+
+    .countdown {
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInUp 1.5s ease 2s forwards;
+    }
+
+    section {
+      padding: 40px 20px;
+      opacity: 0;
+      animation: fadeIn 2s ease 2.5s forwards;
+    }
+
+    .venue a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer {
+      padding: 40px 20px;
+      background-color: rgba(255, 250, 245, 0.8);
+      opacity: 0;
+      animation: fadeIn 2s ease 3s forwards;
+    }
+
+    .petal {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #ffc0cb 40%, transparent 60%);
+      border-radius: 50%;
+      animation: fall linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 600px) {
+      .date-boxes {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .date-box {
+        width: 90vw;
+        max-width: 300px;
+        height: 90px;
+        margin: 0 auto;
+      }
+      .main-title {
+        font-size: 3.5em;
+      }
+      .names {
+        font-size: 2em;
+      }
+      .sub-tagline {
+        font-size: 1.2em;
+        margin: 15px 0 30px;
+      }
+      .countdown {
+        font-size: 1em;
+      }
+      section, footer {
+        padding: 20px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
+      petal.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(petal);
+    }
+  </script>
+
+  <header>
+    <div class="main-title">Save the Date</div>
+    <div class="names">Robine & Anila</div>
+    <div class="sub-tagline">Two hearts, one promise — forever begins now.</div>
+    <div class="date-boxes">
+      <div class="date-box day">21</div>
+      <div class="date-box month">August</div>
+      <div class="date-box year">2025</div>
+    </div>
+    <div class="countdown" id="countdown">Loading countdown...</div>
+  </header>
+
+  <section class="venue">
+    <h2>Venue</h2>
+    <p>St. Kuriakose Knanaya Church, Kakkanad</p>
+    <p><a href="https://www.google.com/maps?q=St.+Kuriakose+Knanaya+Church+Kakkanad" target="_blank" rel="noopener">View on Google Maps</a></p>
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>Please reach out to us for any questions or to RSVP:</p>
+    <p>Email: example@email.com</p>
+    <p>Phone: +91-9876543210</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Robine & Anila. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const targetDate = new Date("August 21, 2025 10:30:00").getTime();
+
+    const countdown = () => {
+      const now = new Date().getTime();
+      const gap = targetDate - now;
+
+      const day = 1000 * 60 * 60 * 24;
+      const hour = 1000 * 60 * 60;
+      const minute = 1000 * 60;
+
+      const days = Math.floor(gap / day);
+      const hours = Math.floor((gap % day) / hour);
+      const minutes = Math.floor((gap % hour) / minute);
+
+      document.getElementById('countdown').innerText =
+        `${days} days, ${hours} hours, and ${minutes} minutes to go!`;
+    };
+
+    setInterval(countdown, 1000);
+  </script>
+</body>
+</html>
