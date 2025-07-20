@@ -187,12 +187,18 @@
 </head>
 <body>
   <audio id="bg-music" loop>
-    <source src="https://pixabay.com/music/wedding-romantic-wedding-background-music-357203/" />
-  </audio>
+  <source src="https://cdn.jsdelivr.net/gh/Robine13/RobineandAnila/Song.mp3" type="audio/mp3" />
+</audio>
 
-  <button id="music-button">Play Music 🎵</button>
+<button id="music-button">Play Music 🎵</button>
 
-  <script>
+<script>
+  document.getElementById("music-button").addEventListener("click", function () {
+    const audio = document.getElementById("bg-music");
+    audio.play();
+    this.style.display = "none";
+  });
+</script>
     document.getElementById("music-button").addEventListener("click", function () {
       const audio = document.getElementById("bg-music");
       audio.play();
