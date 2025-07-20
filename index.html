@@ -87,17 +87,9 @@
       transform: scale(1.05);
     }
 
-    .day {
-      background-image: url('https://images.pexels.com/photos/289519/pexels-photo-289519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-    }
-
-    .month {
-      background-image: url('https://images.pexels.com/photos/265856/pexels-photo-265856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-    }
-
-    .year {
-      background-image: url('https://images.pexels.com/photos/1038711/pexels-photo-1038711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-    }
+    .day { background-image: url('https://images.pexels.com/photos/289519/pexels-photo-289519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); }
+    .month { background-image: url('https://images.pexels.com/photos/265856/pexels-photo-265856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); }
+    .year { background-image: url('https://images.pexels.com/photos/1038711/pexels-photo-1038711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); }
 
     .countdown {
       font-size: 1.3em;
@@ -125,22 +117,14 @@
       animation: fadeIn 2s ease 3s forwards;
     }
 
-    .snowflake {
+    .petal {
       position: absolute;
-      background: white;
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(circle, white 50%, transparent 70%);
       border-radius: 50%;
-      box-shadow:
-        0 -5px 0 white,
-        0 5px 0 white,
-        -5px 0 0 white,
-        5px 0 0 white,
-        -3.5px -3.5px 0 white,
-        3.5px -3.5px 0 white,
-        -3.5px 3.5px 0 white,
-        3.5px 3.5px 0 white;
-      opacity: 0.9;
       animation: fall linear infinite;
-      filter: drop-shadow(0 0 1px #ccc);
+      opacity: 0.8;
     }
 
     #music-button {
@@ -180,41 +164,32 @@
     }
 
     @keyframes fall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 0.9; }
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
   <audio id="bg-music" loop>
-  <source src="https://cdn.jsdelivr.net/gh/Robine13/RobineandAnila/Song.mp3" type="audio/mp3" />
-</audio>
+    <source src="https://cdn.jsdelivr.net/gh/Robine13/RobineandAnila/Song.mp3" />
+  </audio>
 
-<button id="music-button">Play Music 🎵</button>
+  <button id="music-button">Play Music 🎵</button>
 
-<script>
-  document.getElementById("music-button").addEventListener("click", function () {
-    const audio = document.getElementById("bg-music");
-    audio.play();
-    this.style.display = "none";
-  });
-</script>
+  <script>
     document.getElementById("music-button").addEventListener("click", function () {
       const audio = document.getElementById("bg-music");
       audio.play();
       this.style.display = "none";
     });
 
-    for (let i = 0; i < 40; i++) {
-      const snowflake = document.createElement('div');
-      snowflake.className = 'snowflake';
-      snowflake.style.left = Math.random() * 100 + 'vw';
-      snowflake.style.animationDuration = (7 + Math.random() * 7) + 's';
-      snowflake.style.animationDelay = Math.random() * 7 + 's';
-      const size = 10 + Math.random() * 10;
-      snowflake.style.width = size + 'px';
-      snowflake.style.height = size + 'px';
-      document.body.appendChild(snowflake);
+    for (let i = 0; i < 30; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
+      petal.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(petal);
     }
   </script>
 
