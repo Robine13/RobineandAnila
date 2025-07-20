@@ -16,9 +16,9 @@
     body {
       margin: 0;
       background:
-  linear-gradient(rgba(255, 250, 245, 0.65), rgba(255, 250, 245, 0.65)),
-  url('https://images.pexels.com/photos/1268877/pexels-photo-1268877.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
-  center center / cover no-repeat;
+        linear-gradient(rgba(255, 250, 245, 0.7), rgba(255, 250, 245, 0.7)),
+        url('https://images.pexels.com/photos/1268877/pexels-photo-1268877.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
+        center center / cover no-repeat;
       font-family: var(--font-main);
       color: var(--text);
       line-height: 1.6;
@@ -87,9 +87,17 @@
       transform: scale(1.05);
     }
 
-    .day { background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80'); }
-    .month { background-image: url('https://images.unsplash.com/photo-1504203700686-f21ce7ab7c89?auto=format&fit=crop&w=800&q=80'); }
-    .year { background-image: url('https://images.unsplash.com/photo-1521488671643-635f4e4b9acb?auto=format&fit=crop&w=800&q=80'); }
+    .day {
+      background-image: url('https://images.pexels.com/photos/289519/pexels-photo-289519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    }
+
+    .month {
+      background-image: url('https://images.pexels.com/photos/265856/pexels-photo-265856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    }
+
+    .year {
+      background-image: url('https://images.pexels.com/photos/1038711/pexels-photo-1038711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    }
 
     .countdown {
       font-size: 1.3em;
@@ -117,14 +125,38 @@
       animation: fadeIn 2s ease 3s forwards;
     }
 
-    .petal {
+    .snowflake {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, #ffc0cb 40%, transparent 60%);
+      background: white;
       border-radius: 50%;
+      box-shadow:
+        0 -5px 0 white,
+        0 5px 0 white,
+        -5px 0 0 white,
+        5px 0 0 white,
+        -3.5px -3.5px 0 white,
+        3.5px -3.5px 0 white,
+        -3.5px 3.5px 0 white,
+        3.5px 3.5px 0 white;
+      opacity: 0.9;
       animation: fall linear infinite;
-      opacity: 0.7;
+      filter: drop-shadow(0 0 1px #ccc);
+    }
+
+    #music-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: var(--accent);
+      color: white;
+      font-family: var(--font-cursive);
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 999;
     }
 
     @keyframes fadeInDown {
@@ -148,51 +180,35 @@
     }
 
     @keyframes fall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 0.9; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* MOBILE RESPONSIVE STYLES */
-    @media (max-width: 600px) {
-      .date-boxes {
-        flex-direction: column;
-        gap: 15px;
-      }
-      .date-box {
-        width: 90vw;
-        max-width: 300px;
-        height: 90px;
-        margin: 0 auto;
-      }
-      .main-title {
-        font-size: 3.5em;
-      }
-      .names {
-        font-size: 2em;
-      }
-      .sub-tagline {
-        font-size: 1.2em;
-        margin: 15px 0 30px;
-      }
-      .countdown {
-        font-size: 1em;
-      }
-      section, footer {
-        padding: 20px 10px;
-      }
     }
   </style>
 </head>
 <body>
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/audio/2023/04/13/audio_7d2a9a5aa3.mp3" type="audio/mp3" />
+  </audio>
+
+  <button id="music-button">Play Music 🎵</button>
 
   <script>
-    for (let i = 0; i < 30; i++) {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
-      petal.style.animationDelay = Math.random() * 5 + 's';
-      document.body.appendChild(petal);
+    document.getElementById("music-button").addEventListener("click", function () {
+      const audio = document.getElementById("bg-music");
+      audio.play();
+      this.style.display = "none";
+    });
+
+    for (let i = 0; i < 40; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = (7 + Math.random() * 7) + 's';
+      snowflake.style.animationDelay = Math.random() * 7 + 's';
+      const size = 10 + Math.random() * 10;
+      snowflake.style.width = size + 'px';
+      snowflake.style.height = size + 'px';
+      document.body.appendChild(snowflake);
     }
   </script>
 
