@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Robine & Anila - Save the Date</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --accent: #d4af37;
-      --text: #333;
-      --font-main: 'Open Sans', sans-serif;
+      --text: #222;
+      --font-main: 'Great Vibes', sans-serif;
       --font-cursive: 'Great Vibes', cursive;
     }
 
@@ -25,33 +25,59 @@
       overflow-x: hidden;
     }
 
+    #snow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .snowflake {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: pink;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: fall-snow 10s linear infinite;
+    }
+
+    @keyframes fall-snow {
+      0% { transform: translateY(-10px); opacity: 0.9; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
     header {
       padding: 60px 20px 20px;
     }
 
     .main-title {
-      font-size: 5em;
+      font-size: 6em;
       font-family: var(--font-cursive);
       color: var(--accent);
-      opacity: 0;
-      animation: fadeInDown 1.5s ease forwards;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .names {
-      font-size: 3em;
+      font-size: 3.5em;
       font-family: var(--font-cursive);
       color: var(--accent);
       margin-bottom: 10px;
-      opacity: 0;
-      animation: fadeIn 2s ease 0.5s forwards;
     }
 
     .sub-tagline {
-      font-size: 1.8em;
+      font-size: 2em;
       margin: 20px 0 40px;
       font-family: var(--font-cursive);
-      opacity: 0;
-      animation: fadeIn 2s ease 1s forwards;
     }
 
     .date-boxes {
@@ -60,8 +86,6 @@
       flex-wrap: wrap;
       gap: 20px;
       padding: 20px;
-      opacity: 0;
-      animation: zoomIn 1.5s ease 1.5s forwards;
     }
 
     .date-box {
@@ -70,7 +94,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5em;
+      font-size: 2em;
       font-weight: bold;
       color: white;
       border-radius: 20px;
@@ -78,80 +102,43 @@
       background-position: center;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       font-family: var(--font-cursive);
-      transition: transform 0.3s ease;
-    }
-
-    .date-box:hover {
-      transform: scale(1.05);
     }
 
     .day { background-image: url('https://images.pexels.com/photos/289519/pexels-photo-289519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); }
-    .month {
-      background-image: url('https://images.pexels.com/photos/265856/pexels-photo-265856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-      color: black;
-      text-shadow: 1px 1px 3px #fff;
-    }
+    .month { background-image: url('https://images.pexels.com/photos/265856/pexels-photo-265856.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); color: black; font-weight: bold; }
     .year { background-image: url('https://images.pexels.com/photos/1038711/pexels-photo-1038711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); }
 
     .countdown {
-      font-size: 1.5em;
-      font-weight: 600;
-      margin-top: 20px;
-      opacity: 0;
-      animation: fadeInUp 1.5s ease 2s forwards;
-    }
-
-    .countdown span {
-      color: var(--accent);
+      font-size: 3.5em;
       font-weight: bold;
-      font-size: 1.6em;
+      margin-top: 20px;
+      font-style: italic;
     }
 
     section {
       padding: 40px 20px;
-      opacity: 0;
-      animation: fadeIn 2s ease 2.5s forwards;
     }
 
     .venue a {
-      color: var(--accent);
-      text-decoration: none;
+	font-size: 1.7em;
+      color: #d4af37;
+      text-decoration: underline;
+      font-weight: bold;
     }
 
-    .invitation {
-      background: rgba(255, 255, 255, 0.7);
-      padding: 30px;
-      border-radius: 12px;
-      margin: 30px auto;
-      max-width: 700px;
-      font-family: var(--font-main);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .invitation h2 {
-      font-family: var(--font-cursive);
-      color: var(--accent);
-      font-size: 2.5em;
+    .venue-tagline {
+      font-size: 2.6em;
+      margin-bottom: 30px;
+      color: #111;
+      font-weight: 600;
     }
 
     footer {
       padding: 40px 20px;
       background-color: rgba(255, 250, 245, 0.8);
-      opacity: 0;
-      animation: fadeIn 2s ease 3s forwards;
-    }
-
-    .petal {
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      animation: fall linear infinite;
-      opacity: 0.8;
     }
 
     #music-button {
-      display: none;
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -166,38 +153,14 @@
       cursor: pointer;
       z-index: 999;
     }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes zoomIn {
-      0% { opacity: 0; transform: scale(0.9); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 0.8; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
   </style>
 </head>
 <body>
+  <div id="snow-container"></div>
+
   <audio id="bg-music" autoplay loop>
     <source src="https://cdn.jsdelivr.net/gh/Robine13/RobineandAnila/Song.mp3" type="audio/mp3" />
   </audio>
-
   <button id="music-button">Play Music 🎵</button>
 
   <header>
@@ -209,32 +172,24 @@
       <div class="date-box month">August</div>
       <div class="date-box year">2025</div>
     </div>
-    <div class="countdown" id="countdown">
-      <span id="count-days">--</span> days,
-      <span id="count-hours">--</span> hours,
-      <span id="count-minutes">--</span> minutes to go!
-    </div>
+    <div class="countdown" id="countdown">Loading countdown...</div>
   </header>
 
-  <section class="invitation">
-    <h2>You're Invited!</h2>
-    <p>We joyfully invite you to join us for the celebration of our love.</p>
-    <p><strong>Date:</strong> August 21, 2025<br>
-       <strong>Time:</strong> 10:30 AM<br>
-       <strong>Location:</strong> St. Kuriakose Knanaya Church, Kakkanad</p>
-  </section>
-
   <section class="venue">
-    <h2>Venue</h2>
-    <p>St. Kuriakose Knanaya Church, Kakkanad</p>
-    <p><a href="https://www.google.com/maps?q=St.+Kuriakose+Knanaya+Church+Kakkanad" target="_blank" rel="noopener">View on Google Maps</a></p>
-  </section>
-
-  <section class="contact">
-    <h2>Contact</h2>
-    <p>Please reach out to us for any questions or to RSVP:</p>
-    <p>Email: example@email.com</p>
-    <p>Phone: +91-9876543210</p>
+    <div class="venue-tagline">
+      We warmly invite you to join us in celebrating a day of love, laughter, and new beginnings.
+    </div>
+    <p>
+      <a href="https://www.google.com/maps?q=St.+Kuriakose+Knanaya+Church+Kakkanad" target="_blank">
+        St. Kuriakose Knanaya Church, Kakkanad at 10:30 AM
+      </a>
+    </p>
+    <p style="font-weight: bold; color: #111;">and</p>
+    <p>
+      <a href="https://www.google.com/maps?q=St.+Michael’s+Church+Parish+Hall+Kakkanad" target="_blank">
+        Reception at St. Michael’s Church Parish Hall, Kakkanad
+      </a>
+    </p>
   </section>
 
   <footer>
@@ -242,8 +197,13 @@
   </footer>
 
   <script>
-    const targetDate = new Date("August 21, 2025 10:30:00").getTime();
+    document.getElementById("music-button").addEventListener("click", function () {
+      const audio = document.getElementById("bg-music");
+      audio.play();
+      this.style.display = "none";
+    });
 
+    const targetDate = new Date("August 21, 2025 10:30:00").getTime();
     const countdown = () => {
       const now = new Date().getTime();
       const gap = targetDate - now;
@@ -256,32 +216,21 @@
       const hours = Math.floor((gap % day) / hour);
       const minutes = Math.floor((gap % hour) / minute);
 
-      document.getElementById('count-days').textContent = days;
-      document.getElementById('count-hours').textContent = hours;
-      document.getElementById('count-minutes').textContent = minutes;
+      document.getElementById('countdown').innerText =
+        `${days} days, ${hours} hours, and ${minutes} minutes to go!`;
     };
-
     setInterval(countdown, 1000);
 
-    const audio = document.getElementById("bg-music");
-    audio.play().catch(() => {
-      document.getElementById("music-button").style.display = "block";
-    });
-
-    document.getElementById("music-button").addEventListener("click", function () {
-      audio.play();
-      this.style.display = "none";
-    });
-
-    const colors = ['#ffffff', '#ffd1dc', '#ffe4e1', '#f0f8ff'];
-    for (let i = 0; i < 30; i++) {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]} 40%, transparent 70%)`;
-      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
-      petal.style.animationDelay = Math.random() * 5 + 's';
-      document.body.appendChild(petal);
+    // Snowflakes
+    const snowContainer = document.getElementById("snow-container");
+    for (let i = 0; i < 50; i++) {
+      const flake = document.createElement("div");
+      flake.className = "snowflake";
+      flake.style.left = Math.random() * 100 + "vw";
+      flake.style.top = "0";
+      flake.style.animationDuration = (5 + Math.random() * 5) + "s";
+      flake.style.animationDelay = Math.random() * 5 + "s";
+      snowContainer.appendChild(flake);
     }
   </script>
 </body>
